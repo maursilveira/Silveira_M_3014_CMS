@@ -1,0 +1,8 @@
+- Generate random string
+https://gist.github.com/irazasyed/5382685
+
+- Encrypt password:
+http://php.net/manual/en/function.password-hash.php
+
+- Check string password and hash password:
+http://php.net/manual/en/function.password-verify.php
