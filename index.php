@@ -2,16 +2,16 @@
 	require_once('admin/phpscripts/config.php');
 
 	if(isset($_GET['filter'])){
-		$tbl = "tbl_movies";
-		$tbl2 = "tbl_genre";
-		$tbl3 = "tbl_mov_genre";
-		$col = "movies_id";
-		$col2 = "genre_id";
-		$col3 = "genre_name";
+		$tbl = "movie";
+		$tbl2 = "genre";
+		$tbl3 = "movie_genre";
+		$col = "id";
+		$col2 = "id";
+		$col3 = "name";
 		$filter = "action";
 		$getMovies = filterResults($tbl, $tbl2, $tbl3, $col, $col2, $col3, $filter);
 	}else{
-		$tbl = "tbl_movies";
+		$tbl = "movie";
 		$getMovies = getAll($tbl);
 	}
 ?>
@@ -27,10 +27,10 @@
 
 	if(!is_string($getMovies)){
 		while($row = mysqli_fetch_array($getMovies)){
-			echo "<img src=\"images/{$row['movies_cover']}\" alt=\"{$row['movies_title']}\">
-				<h2>{$row['movies_title']}</h2>
-				<p>{$row['movies_year']}</p>
-				<a href=\"details.php?id={$row['movies_id']}\">More Details...</a><br><br>
+			echo "<img src=\"images/{$row['cover']}\" alt=\"{$row['title']}\">
+				<h2>{$row['title']}</h2>
+				<p>{$row['year']}</p>
+				<a href=\"details.php?id={$row['id']}\">More Details...</a><br><br>
 			";
 		}
 	}else{

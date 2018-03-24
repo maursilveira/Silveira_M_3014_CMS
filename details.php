@@ -2,8 +2,8 @@
 	require_once('admin/phpscripts/config.php');
 	if(isset($_GET['id'])) {
 		//get the movie
-		$tbl = "tbl_movies";
-		$col = "movies_id";
+		$tbl = "movie";
+		$col = "id";
 		$id = $_GET['id'];
 		$getMovie = getSingle($tbl, $col, $id);
 	}
@@ -19,13 +19,13 @@
 	<?php
 		if(!is_string($getMovie)) {
 			$row=mysqli_fetch_array($getMovie);
-			echo "<img src=\"images/{$row['movies_cover']}\" alt=\"{$row['movies_title']}\">
-			<p>{$row['movies_title']}</p>
-			<p>{$row['movies_year']}</p>
-			<p>{$row['movies_storyline']}</p>
+			echo "<img src=\"images/{$row['cover']}\" alt=\"{$row['title']}\">
+			<p>{$row['title']}</p>
+			<p>{$row['year']}</p>
+			<p>{$row['storyline']}</p>
 			<a href=\"index.php\">Back...</a>
 			";
-			
+
 		}else{
 			echo "<p>{$getMovie}</p>";
 		}
