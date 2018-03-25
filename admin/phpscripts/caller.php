@@ -11,6 +11,45 @@
       $id = $_GET['id'];
       deleteUser($id);
     }
+    else if($dir == 'getSingle') {
+      $tbl = $_GET['tbl'];
+      $col = $_GET['col'];
+      $id = $_GET['id'];
+      $result = getSingle($tbl, $col, $id);
+      $rows = array();
+      while ($row = mysqli_fetch_assoc($result)) {
+        $rows[] = $row;
+      }
+      echo json_encode($rows);
+    }
+    else if($dir == 'getRelation') {
+      $tbl = $_GET['tbl'];
+      $tbl2 = $_GET['tbl2'];
+      $tbl3 = $_GET['tbl3'];
+      $col = $_GET['col'];
+      $col2 = $_GET['col2'];
+      $id = $_GET['id'];
+      $result = getRelation($tbl, $tbl2, $tbl3, $col, $col2, $id);
+      $rows = array();
+      while ($row = mysqli_fetch_assoc($result)) {
+        $rows[] = $row;
+      }
+      echo json_encode($rows);
+    }
+    else if($dir == 'getForeign') {
+      $tbl = $_GET['tbl'];
+      $tbl2 = $_GET['tbl2'];
+      $col = $_GET['col'];
+      $col2 = $_GET['col2'];
+      $col3 = $_GET['col3'];
+      $id = $_GET['id'];
+      $result = getForeign($tbl, $tbl2, $col, $col2, $col3, $id);
+      $rows = array();
+      while ($row = mysqli_fetch_assoc($result)) {
+        $rows[] = $row;
+      }
+      echo json_encode($rows);
+    }
     else {
       echo 'Caller id incorrectly';
     }
