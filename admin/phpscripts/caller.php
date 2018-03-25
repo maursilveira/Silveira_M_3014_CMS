@@ -50,6 +50,13 @@
       }
       echo json_encode($rows);
     }
+    else if($dir == 'deleteRow') {
+      $tbl = $_GET['tbl'];
+      $col = $_GET['col'];
+      $id = $_GET['id'];
+      $result = deleteRow($tbl, $col, $id);
+      return $result;
+    }
     else {
       echo 'Caller id incorrectly';
     }

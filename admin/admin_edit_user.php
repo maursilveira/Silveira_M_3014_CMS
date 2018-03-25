@@ -3,46 +3,34 @@
   // confirmLoggedIn();
 
   $id = $_SESSION['user_id'];
-  $tbl = 'tbl_user';
+  $ip = $_SERVER['REMOTE_ADDR'];
+  $tbl = 'user';
   $col = 'user_id';
   $old = getSingle($tbl, $col, $id);
-  // echo $old;
   $info = mysqli_fetch_array($old);
-  // echo $info;
+
+  // check the origin of request
+  // if it is login page, it is the first login of the user
+  // display message
+  $referer = $_SERVER['HTTP_REFERER'];
+  if(strpos($referer, 'admin_login.php')){
+    $message = 'This is your first login and you should edit your profile.<br>Your temporary password must be changed';
+  }
 
   if(isset($_POST['submit'])) {
     $fname = trim($_POST['fname']);
     $username = trim($_POST['username']);
     $email = trim($_POST['email']);
-    $result = editUser($id, $fname, $username, $email);
-    $message = $result;
-    // $level = $_POST['level'];
-    // if(empty($level)) {
-    //   $message = 'Please select a user level';
-    // }
-    // else {
-      // generate random password
-      // $password = generatePassword();
-      // encrypt password to be stored
-      // $cryptPassword = encryptPassword($password);
-      // store user information in database
-      // $result = createUser($fname, $username, $cryptPassword, $email, $level);
-      // $result = createUser($fname, $username, $cryptPassword, $email);
+    $password = trim($_POST['password']);
+    $lastlogin = trim($info['user_last_login']);
+    $result = editUser($id, $fname, $username, $email, $password, $lastlogin);
 
-      // check if user was created
-      // user created successully
-      // if($result) {
-      //   // send email to user
-      //   $sendMail = submitNewUserMessage($fname, $email, $username, $password);
-      //
-      //   // display message containing username and password
-      //   $created = '<div class="created-message"><p>User created successfully</p><p>Username: '.$username.'</p><p>Password: '.$password.'</p><p>An email was sent to '.$email.' with user credentials.</p></div>';
-      // }
-      // // failed to created user
-      // else {
-      //   $message = '<div class="error-message"><p>Fail to register user</p></div>';
-      // }
-    // }
+    if($result === 'success') {
+      // update user login information
+      updateLogin($id, $ip);
+      redirect_to('admin_index.php');
+    }
+    $message = $result;
   }
  ?>
 
@@ -72,7 +60,7 @@
     <h2 class="greetings">Edit User</h2>
     <?php
       if(!empty($message)) {
-        echo $message;
+        echo "<p class=\"edit-message\">$message</p>";
       }
       if(!empty($created)) {
         echo $created;
@@ -85,12 +73,13 @@
       <input type="text" name="username" value="<?php echo $info['user_name'] ?>" required>
       <label for="email">Email:</label>
       <input type="email" name="email" value="<?php echo $info['user_email'] ?>" required>
-      <label for="email">Password</label>
+      <label for="email">Password:</label>
       <input type="password" name="password" value="">
       <div>
         <input type="submit" name="submit" value="Save">
       </div>
     </form>
+    <a class="back-index" href="admin_index.php">Go Back</a>
 </main>
 </body>
 </html>

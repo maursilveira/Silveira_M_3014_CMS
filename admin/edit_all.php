@@ -1,6 +1,9 @@
 <?php
   require_once('phpscripts/config.php');
 
+  $tbl = $_GET['tbl'];
+  $id = $_GET['id'];
+
  ?>
 
 <!DOCTYPE html>
@@ -13,12 +16,14 @@
   <title>Admin Login</title>
 </head>
 <body>
-  <?php
-    $tbl = "tbl_movies";
-    $col = "movies_id";
-    $id = 1;
-    echo singleEdit($tbl, $col, $id);
+  <section class="edit-row">
 
-   ?>
+
+    <?php
+      $col = "id";
+      echo singleEdit($tbl, $col, $id);
+
+     ?>
+   </section>
 </body>
 </html>

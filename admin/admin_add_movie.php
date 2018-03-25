@@ -1,8 +1,9 @@
 <?php
   require_once('phpscripts/config.php');
 
-  $tbl = 'tbl_genre';
-  $genQuery = getAll($tbl);
+  $tbl = 'genre';
+  $order = 'name';
+  $genQuery = getAll($tbl, $order);
   // echo $genQuery;
 
 
@@ -19,22 +20,6 @@
 
     $result = addMovie($cover, $title, $year, $runtime, $storyline, $trailer, $release, $genre);
     $message = $result;
-
-    // echo $cover['type'];
-    // echo $cover['name'];
-    // echo $cover['size'];
-    // echo $cover['tmp_name'];
-
-    // // check if both input fields are filled
-    // // if yes, call function to log user in
-    // if ($username !== '' && $password !== '') {
-    //   $result = logIn($username, $password, $ip);
-    //   $message = $result;
-    // }
-    // // if no, display warning message
-    // else {
-    //   $message = 'Please fill out the required fields';
-    // }
   }
  ?>
 
@@ -52,7 +37,7 @@
   <main id="container" class="login-cont">
     <section id="form-wrapper">
       <h2 class="hidden">Login Form</h2>
-      <p class="title">Admin Login</p>
+      <p class="title">Add Movie</p>
       <?php if (!empty($message)){
         echo "<p class=\"error-message\">".$message."</p>";
       } ?>
@@ -75,7 +60,7 @@
           <option>Select a genre</option>
           <?php
             while($row = mysqli_fetch_array($genQuery)) {
-              echo "<option value=\"{$row['genre_id']}\">{$row['genre_name']}</option>";
+              echo "<option value=\"{$row['id']}\">{$row['name']}</option>";
             }
            ?>
         </select>

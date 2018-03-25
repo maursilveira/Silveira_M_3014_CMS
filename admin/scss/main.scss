@@ -12,8 +12,8 @@ body {
   font-family: $fontText;
   font-size: 1.25rem;
   color: $textColor;
-  background: $bgBlue;
-  background: linear-gradient(to bottom right, $bgBlue, $bgGreen);
+  background: $rokuPurple;
+  background: linear-gradient(to bottom right, $rokuPurple, #000000);
   height: auto;
   min-height: 100vh;
 }
@@ -27,16 +27,15 @@ body {
     max-width: 1920px;
     height: 100vh;
     background-color: transparent;
-    // background: $bgBlue;
-    // background: linear-gradient(to bottom right, $bgBlue, $bgGreen);
   }
 
   &.index-cont,
   &.create-cont {
     max-width: 800px;
-    background-color: #faf0e6;
+    background-color: rgba(255, 255, 255, 0.3);
     clear: both;
     padding-bottom: 100px;
+    margin-bottom: 80px;
   }
 }
 
@@ -76,7 +75,8 @@ header {
   }
 }
 
-.error-message {
+.error-message,
+.edit-message {
   font-size: 1.1rem;
   color: #a60202;
   text-align: center;
@@ -152,10 +152,21 @@ header {
   margin-left: 3vw;
 }
 
+.back-index {
+  display: block;
+  text-align: center;
+  font-size: 0.9rem;
+  text-decoration: underline;
+  text-transform: uppercase;
+  color: #000000;
+  // border-bottom: 1px solid #000000;
+  margin-top: 2rem;
+}
+
 .functions {
   width: 80%;
   margin: 0 auto;
-  border: 1px solid #000000;
+  border: 2px solid #ffffff;
   border-radius: 5px;
   margin-top: 40px;
 
@@ -172,16 +183,17 @@ header {
     padding: 20px;
     li {
       padding: 12px;
-      border: 1px solid #000000;
+      border: 2px solid #ffffff;
       border-radius: 5px;
+      text-align: center;
       a {
         font-size: 0.8rem;
         font-weight: bold;
-        color: #000000;
+        color: #ffffff;
         text-decoration: none;
         i {
           display: block;
-          background-color: #c3a751;
+          background-color: #ffffff;
           padding: 8px;
           border-radius: 5px;
           font-size: 4rem;
@@ -240,4 +252,126 @@ header {
   color: #064d06;
   text-align: center;
   margin-top: 20px;
+}
+
+#delete-list {
+  width: 90%;
+  max-width: 400px;
+  margin: 50px auto 0 auto;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+  padding: 20px 0;
+  li {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    line-height: 40px;
+    margin-left: 20%;
+    p {
+      // margin-right: 40px;
+    }
+    a {
+      // text-decoration: none;
+      color: #a72727;
+      font-weight: bold;
+      // border-bottom: 1px solid red;
+    }
+  }
+}
+
+.list-title {
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 40px;
+  margin: 20px 0;
+}
+
+.list-rows {
+  margin: 20px 0;
+  text-align: center;
+  .list-new {
+    display: inline-block;
+    // margin: 0 auto;
+    text-decoration: none;
+    background-color: $bgBlue;
+    padding: 5px 15px;
+    color: #ffffff;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  ul {
+    text-align: left;
+    width: 70%;
+    margin: 0 auto;
+    border: 2px solid #ffffff;
+    border-radius: 5px;
+    padding: 10px;
+    li {
+      display: grid;
+      grid-template-columns: 80% 10% 10%;
+      margin: 5px 0;
+      background-color: rgba(255, 255, 255, 0.1);
+
+      .list-edit {
+        // text-transform: uppercase;
+        text-decoration: none;
+        color: #cfbe2a;
+      }
+      .list-delete {
+        // text-transform: uppercase;
+        text-decoration: none;
+        color: #a72727;
+      }
+    }
+    li:nth-of-type(even) {
+      background-color: transparent;
+    }
+  }
+}
+
+.edit-row {
+  text-align: center;
+  h1 {
+    text-transform: capitalize;
+    font-size: 32px;
+    margin: 20px 0 30px 0;
+  }
+
+  img {
+    width: 200px;
+  }
+
+  form {
+    width: 70%;
+    max-width: 500px;
+    margin: 20px auto;
+    border: 2px solid #ffffff;
+    border-radius: 5px;
+    padding: 20px 10px;
+
+    label {
+      text-transform: capitalize;
+    }
+    input {
+      width: 60%;
+    }
+    input[type=submit] {
+      width: 30%;
+      background-color: $bgBlue;
+      color: #ffffff;
+      border: none;
+      border-radius: 5px;
+      text-transform: uppercase;
+      font-weight: bold;
+      padding: 5px 10px;
+    }
+    textarea {
+      width: 60%;
+      display: block;
+      margin: 0 auto;
+      margin-bottom: 20px;
+    }
+  }
 }

@@ -31,7 +31,7 @@
   $updateQuery = mysqli_query($link, $qstring);
 
   if($updateQuery) {
-    header("Location:../../index.php");
+    header("Location:../admin_index.php");
   }
   else {
     echo "error";

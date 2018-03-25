@@ -83,6 +83,7 @@
         <input type="submit" name="submit" value="Save">
       </div>
     </form>
+    <a class="back-index" href="admin_index.php">Go Back</a>
 </main>
 </body>
 </html>
