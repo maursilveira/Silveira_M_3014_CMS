@@ -1,6 +1,6 @@
-# Create User Page #
+# Movie App Custom CMS #
 
-Extending Research Project 1, this project builds an administration page where admin users can create new users, storing their information into the database. The password is generated automatically, therefore there is not a input field to password. Furthermore, passwords are encrypted, and the proper password hash is stored in the database.
+This is a movie review application and its own admin CMS platform, to add, edit and delete content related to movies. Also, it is possible to make these operations to manage users. Enjoy!
 
 ## Getting Started
 
