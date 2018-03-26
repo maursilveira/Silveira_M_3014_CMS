@@ -58,13 +58,23 @@
     ?>
 
     <section class="functions">
-      <h2 class="title">Admin Operations</h2>
+      <h2 class="title">Movie Operations</h2>
+      <ul>
+        <li><a href="list_all.php?tbl=movie&order=title"><i class="ion-ios-film"></i>Movies</a></li>
+        <li><a href="list_all.php?tbl=genre&order=name"><i class="ion-ios-pricetags"></i>Genres</a></li>
+        <li><a href="list_all.php?tbl=actor&order=lname"><i class="ion-happy"></i>Actors</a></li>
+        <li><a href="list_all.php?tbl=director&order=lname"><i class="ion-film-marker"></i>Directors</a></li>
+        <li><a href="list_all.php?tbl=company&order=name"><i class="ion-briefcase"></i>Companies</a></li>
+      </ul>
+    </section>
+
+    <section class="functions">
+      <h2 class="title">User Operations</h2>
       <ul>
         <li><a href="admin_create_user.php" title="Create User"><i class="ion-android-add-circle"></i>Create User</a></li>
         <li><a href="admin_edit_user.php" title="Edit User"><i class="ion-edit"></i>Edit User</a></li>
         <li><a href="admin_delete_user.php" title="Delete User"><i class="ion-trash-a"></i>Delete User</a></li>
       </ul>
-
     </section>
   </main>
 </body>

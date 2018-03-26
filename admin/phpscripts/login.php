@@ -5,7 +5,7 @@
     $username = mysqli_real_escape_string($link, $username); //sanitize input from potential sql injection
     $password = mysqli_real_escape_string($link, $password);
 
-    $loginString = "SELECT * FROM tbl_user WHERE user_name = '{$username}'";
+    $loginString = "SELECT * FROM user WHERE user_name = '{$username}'";
 
     $user_set = mysqli_query($link, $loginString);
 
@@ -28,36 +28,48 @@
 
         // password is correct
         if($checked) {
-          $_SESSION['user_id'] = $id;
-          $_SESSION['user_name'] = $founduser['user_fname'];
-          $_SESSION['user_last_login'] = $founduser['user_last_login'];
-          if(mysqli_query($link, $loginString)) {
-            // store IP
-            $updateIp = "UPDATE tbl_user SET user_ip = '{$ip}' WHERE user_id = {$id}";
-            $updatequery = mysqli_query($link, $updateIp);
-
-            // reset failed login sttempts
-            $resetFail = "UPDATE tbl_user SET user_attempt_fail = 0 WHERE user_id = {$id}";
-            $runReset = mysqli_query($link, $resetFail);
-
-            // store date and time of last successful login
-            $setTime = "UPDATE tbl_user SET user_last_login = NOW() WHERE user_id = {$id}";
-            $runTime = mysqli_query($link, $setTime);
+          date_default_timezone_set('America/Toronto');
+          $createTime = strtotime($founduser['user_date']);
+          $curTime = strtotime(date("Y-m-d H:i:s"));
+          $diff = $curTime - $createTime;
+          $limitTime = 120; // 2 minutes
+          // check if is a new user and expired first login limit time, set by $limitTime variable above
+          // if so, redirect to login page and display message
+          if(!$founduser['user_last_login'] && $diff > $limitTime) {
+            $message = 'Your account is suspended.<br>Your first login time limit expired.<br>Contact Administrator.';
+            return $message;
           }
-          redirect_to('admin_index.php');
+          // user is not new or first login limit time did not expire
+          else {
+            $_SESSION['user_id'] = $id;
+            $_SESSION['user_name'] = $founduser['user_fname'];
+            $_SESSION['user_last_login'] = $founduser['user_last_login'];
+
+            // check if it is first login
+            // if it is first login
+            if(!$founduser['user_last_login']) {
+              redirect_to('admin_edit_user.php');
+            }
+            //if is not first login
+            else if(mysqli_query($link, $loginString)) {
+              // update user login information
+              updateLogin($id, $ip);
+              redirect_to('admin_index.php');
+            }
+          }
         }
         // password is not correct
         else {
           $message = 'Invalid credentials.';
 
           // get current number of failed login attempts
-          $getCur = "SELECT user_attempt_fail FROM tbl_user WHERE user_id = {$id}";
+          $getCur = "SELECT user_attempt_fail FROM user WHERE user_id = {$id}";
           $curFailed = mysqli_query($link, $getCur);
           $attempt = mysqli_fetch_array($curFailed, MYSQLI_ASSOC);
           $newVal = $attempt['user_attempt_fail']+1;
 
           // increment number of failed login attempts
-          $incrementFail = "UPDATE tbl_user SET user_attempt_fail = {$newVal} WHERE user_id = {$id}";
+          $incrementFail = "UPDATE user SET user_attempt_fail = {$newVal} WHERE user_id = {$id}";
           $runIncrement = mysqli_query($link, $incrementFail);
 
           if($newVal == $maxAttempts) {

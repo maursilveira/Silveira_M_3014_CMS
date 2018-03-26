@@ -1,6 +1,9 @@
 <?php
   require_once('phpscripts/config.php');
 
+  $tbl = $_GET['tbl'];
+  $id = $_GET['id'];
+
  ?>
 
 <!DOCTYPE html>
@@ -10,15 +13,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="css/main.css">
-  <title>Admin Login</title>
+  <title>Admin | Edit <?php echo $tbl ?></title>
 </head>
 <body>
-  <?php
-    $tbl = "tbl_movies";
-    $col = "movies_id";
-    $id = 1;
-    echo singleEdit($tbl, $col, $id);
+  <main id="container" class="create-cont">
+    <section class="edit-row">
 
-   ?>
+
+      <?php
+        $col = "id";
+        echo singleEdit($tbl, $col, $id);
+
+       ?>
+     </section>
+     <a class="back-index movie" href="admin_index.php">Go Back</a>
+   </main>
 </body>
 </html>
