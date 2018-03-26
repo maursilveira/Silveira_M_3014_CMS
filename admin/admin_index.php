@@ -64,7 +64,7 @@
         <li><a href="list_all.php?tbl=genre&order=name"><i class="ion-ios-pricetags"></i>Genres</a></li>
         <li><a href="list_all.php?tbl=actor&order=lname"><i class="ion-happy"></i>Actors</a></li>
         <li><a href="list_all.php?tbl=director&order=lname"><i class="ion-film-marker"></i>Directors</a></li>
-        <li><a href="list_all.php?tbl=rating&order=name_us"><i class="ion-speedometer"></i>Rating</a></li>
+        <li><a href="list_all.php?tbl=company&order=name"><i class="ion-briefcase"></i>Companies</a></li>
       </ul>
     </section>
 

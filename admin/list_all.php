@@ -15,14 +15,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="css/main.css">
-  <title>Admin Login</title>
+  <title>Admin | List <?php echo $tbl ?>s</title>
 </head>
 <body>
   <h1 class="list-title"><?php echo $tbl; ?></h1>
 
   <section class="list-rows">
     <a class="list-new" href="admin_add_<?php echo $tbl; ?>.php">New</a>
-    <ul>
+    <ol>
       <?php
         while($row = mysqli_fetch_array($list)) {
           if($tbl === "movie") {
@@ -39,7 +39,8 @@
           }
         }
        ?>
-     </ul>
+     </ol>
    </section>
+   <a class="back-index" href="admin_index.php">Go Back</a>
 </body>
 </html>

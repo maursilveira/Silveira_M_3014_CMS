@@ -131,6 +131,12 @@ header {
       margin: 5px auto 30px auto;
       width: 80%;
       border-radius: 4px; }
+    #form-wrapper form textarea {
+      width: 80%;
+      font-family: "Helvetica", Arial, sans-serif;
+      font-size: 0.9rem;
+      margin-top: 10px;
+      margin-bottom: 20px; }
     #form-wrapper form input.button {
       width: 30%;
       background-color: #044470;
@@ -139,6 +145,19 @@ header {
       font-size: 1rem;
       color: #ffffff;
       padding: 4px 0; }
+    #form-wrapper form .form-options {
+      text-align: center;
+      margin-bottom: 2rem; }
+      #form-wrapper form .form-options legend {
+        text-transform: capitalize;
+        margin-bottom: 1rem; }
+      #form-wrapper form .form-options div {
+        text-align: left;
+        display: inline-block; }
+        #form-wrapper form .form-options div input[type="checkbox"] {
+          display: inline-block;
+          width: auto;
+          margin: 0 1rem 0 0; }
 
 .greetings {
   font-size: 2rem;
@@ -161,7 +180,7 @@ header {
   font-size: 0.9rem;
   text-decoration: underline;
   text-transform: uppercase;
-  color: #000000;
+  color: #ffffff;
   margin-top: 2rem; }
 
 .functions {
@@ -201,7 +220,7 @@ header {
   width: 90%;
   max-width: 400px;
   margin: 50px auto 0 auto;
-  border: 1px solid #000000;
+  border: 2px solid #ffffff;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
@@ -241,7 +260,7 @@ header {
   width: 90%;
   max-width: 400px;
   margin: 50px auto 0 auto;
-  border: 1px solid #000000;
+  border: 2px solid #ffffff;
   border-radius: 5px;
   padding: 20px 0; }
   #delete-list li {
@@ -270,25 +289,29 @@ header {
     color: #ffffff;
     border-radius: 5px;
     margin-bottom: 10px; }
-  .list-rows ul {
+  .list-rows ol {
     text-align: left;
     width: 70%;
     margin: 0 auto;
     border: 2px solid #ffffff;
     border-radius: 5px;
-    padding: 10px; }
-    .list-rows ul li {
+    padding: 10px;
+    list-style: decimal;
+    list-style-type: decimal;
+    list-style-position: outside;
+    list-style-image: none; }
+    .list-rows ol li {
       display: grid;
       grid-template-columns: 80% 10% 10%;
       margin: 5px 0;
       background-color: rgba(255, 255, 255, 0.1); }
-      .list-rows ul li .list-edit {
+      .list-rows ol li .list-edit {
         text-decoration: none;
         color: #cfbe2a; }
-      .list-rows ul li .list-delete {
+      .list-rows ol li .list-delete {
         text-decoration: none;
         color: #a72727; }
-    .list-rows ul li:nth-of-type(even) {
+    .list-rows ol li:nth-of-type(even) {
       background-color: transparent; }
 
 .edit-row {
@@ -296,7 +319,7 @@ header {
   .edit-row h1 {
     text-transform: capitalize;
     font-size: 32px;
-    margin: 20px 0 30px 0; }
+    padding: 20px 0 30px 0; }
   .edit-row img {
     width: 200px; }
   .edit-row form {
@@ -307,10 +330,18 @@ header {
     border-radius: 5px;
     padding: 20px 10px; }
     .edit-row form label {
-      text-transform: capitalize; }
+      text-transform: capitalize;
+      display: block;
+      margin-bottom: 10px; }
     .edit-row form input {
-      width: 60%; }
+      width: 60%;
+      border: 1px solid #999999;
+      border-radius: 5px;
+      padding: 4px 0;
+      margin-bottom: 10px; }
     .edit-row form input[type=submit] {
+      display: block;
+      margin: 0 auto;
       width: 30%;
       background-color: #044470;
       color: #ffffff;
@@ -319,10 +350,31 @@ header {
       text-transform: uppercase;
       font-weight: bold;
       padding: 5px 10px; }
+    .edit-row form select {
+      display: inline-block;
+      margin-bottom: 20px;
+      background-color: #044470;
+      color: #ffffff;
+      padding: 5px 10px;
+      border: none; }
+    .edit-row form .form-options {
+      text-align: center;
+      margin-bottom: 2rem; }
+      .edit-row form .form-options legend {
+        text-transform: capitalize;
+        margin-bottom: 1rem; }
+      .edit-row form .form-options div {
+        text-align: left;
+        display: inline-block; }
+        .edit-row form .form-options div input[type="checkbox"] {
+          width: auto;
+          margin: 0 1rem 0 0; }
     .edit-row form textarea {
       width: 60%;
       display: block;
       margin: 0 auto;
-      margin-bottom: 20px; }
+      margin-bottom: 20px;
+      font-family: "Helvetica", Arial, sans-serif;
+      font-size: 0.9rem; }
 
 /*# sourceMappingURL=main.css.map */

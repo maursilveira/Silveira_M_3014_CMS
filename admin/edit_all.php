@@ -13,17 +13,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="css/main.css">
-  <title>Admin Login</title>
+  <title>Admin | Edit <?php echo $tbl ?></title>
 </head>
 <body>
-  <section class="edit-row">
+  <main id="container" class="create-cont">
+    <section class="edit-row">
 
 
-    <?php
-      $col = "id";
-      echo singleEdit($tbl, $col, $id);
+      <?php
+        $col = "id";
+        echo singleEdit($tbl, $col, $id);
 
-     ?>
-   </section>
+       ?>
+     </section>
+     <a class="back-index movie" href="admin_index.php">Go Back</a>
+   </main>
 </body>
 </html>

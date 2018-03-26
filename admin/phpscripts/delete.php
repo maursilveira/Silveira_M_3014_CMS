@@ -18,4 +18,22 @@ function deleteRow($tbl, $col, $id) {
   mysqli_close($link);
 }
 
+function deleteLinkRow($tbl, $col, $col2, $id, $id2) {
+  include('connect.php');
+
+  $deleteLinkRow = "DELETE FROM {$tbl} WHERE {$col} = {$id} AND {$col2} = {$id2}";
+
+  $deleteQuery = mysqli_query($link, $deleteLinkRow);
+
+  if($deleteQuery) {
+    $message = "success";
+  }
+  else {
+    $message = 'error';
+  }
+  return $message;
+
+  mysqli_close($link);
+}
+
  ?>

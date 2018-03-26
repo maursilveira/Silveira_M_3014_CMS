@@ -6,7 +6,9 @@
 	require_once('mail.php');
 	require_once('user.php');
 	require_once('movie.php');
+	require_once('person.php');
 	require_once('single_edit_form.php');
+	require_once('add.php');
 	require_once('delete.php');
 
 ?>
