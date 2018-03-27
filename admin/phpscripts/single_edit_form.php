@@ -30,7 +30,7 @@
       echo "<h1>{$tbl}: {$getResult['name']}</h1>";
     }
 
-    echo "<form action=\"phpscripts/edit.php\" method=\"post\">";
+    echo "<form action=\"phpscripts/edit.php\" method=\"post\" enctype=\"multipart/form-data\">";
 
     echo "<input hidden name=\"tbl\" value=\"{$tbl}\">";
     echo "<input hidden name=\"col\" value=\"{$col}\">";
@@ -46,6 +46,9 @@
         echo "<label>{$fieldName}</label><br>";
         if($fieldType != "252") { //not equal to text
           echo "<input type=\"text\" name=\"{$fieldName}\" value=\"{$getResult[$i]}\"><br><br>";
+          if($fieldName === 'cover') {
+            echo "<input type=\"file\" name=\"cover\" value=\"\">";
+          }
         }
         else {
           echo "<textarea rows=\"8\" name=\"{$fieldName}\">{$getResult[$i]}</textarea>";

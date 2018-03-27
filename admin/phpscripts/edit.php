@@ -2,6 +2,9 @@
   require_once('config.php');
   include('connect.php');
 
+  // ini_set('display_errors', 1);
+  // error_reporting(E_ALL);
+
   $tbl = $_POST['tbl'];
   $col = $_POST['col'];
   $id = $_POST['id'];
@@ -10,6 +13,19 @@
 
   if($tbl === "movie") {
     $linkTbl = "{$tbl}_{$relTbl}";
+    $cover = $_FILES['cover'];
+
+    if (!empty($cover)) {
+      if($cover['type'] == "image/jpg" || $cover['type'] == "image/jpeg") {
+        $targetPath = "../../images/{$cover['name']}";
+        if(move_uploaded_file($cover['tmp_name'], $targetPath)) {
+          $_POST['cover'] = $cover['name'];
+        }
+      }
+      else {
+        echo "File is not a jpg image";
+      }
+    }
   }
   else {
     $linkTbl = "{$relTbl}_{$tbl}";
@@ -60,12 +76,12 @@
 
   $updateQuery = mysqli_query($link, $qstring);
 
-  if($updateQuery) {
-    header("Location:../admin_index.php");
-  }
-  else {
-    echo "error";
-  }
+  // if($updateQuery) {
+  //   header("Location:../admin_index.php");
+  // }
+  // else {
+  //   echo "error";
+  // }
 
   mysqli_close($link);
 
