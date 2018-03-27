@@ -26,9 +26,9 @@
 		mysqli_close($link);
 	}
 
-	function getRelation($tbl, $tbl2, $tbl3, $col, $col2, $id) {
+	function getRelation($tbl, $tbl2, $tbl3, $col, $col2, $id, $order = "id") {
 		include('connect.php');
-		$queryRel = "SELECT {$tbl2}.* FROM {$tbl}, {$tbl2}, {$tbl3} WHERE {$tbl}.{$col} = {$id} AND {$tbl}.{$col} = {$tbl3}.{$tbl}_{$col} AND {$tbl3}.{$tbl2}_{$col2} = {$tbl2}.{$col2}";
+		$queryRel = "SELECT {$tbl2}.* FROM {$tbl}, {$tbl2}, {$tbl3} WHERE {$tbl}.{$col} = {$id} AND {$tbl}.{$col} = {$tbl3}.{$tbl}_{$col} AND {$tbl3}.{$tbl2}_{$col2} = {$tbl2}.{$col2} ORDER BY {$order}";
 		$runRel = mysqli_query($link, $queryRel);
 		if($runRel){
 			return $runRel;

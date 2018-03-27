@@ -1,5 +1,7 @@
 (() => {
   var movies = document.querySelectorAll('.movie-cover');
+  var genreSelect = document.querySelector('.genre-selector');
+  var lbmovie = document.querySelector('#lbmovie');
 
   function getMovieInfo(movieId) {
     let url = 'admin/phpscripts/caller.php?caller_id=getSingle&tbl=movie&col=id&id=' + movieId;
@@ -35,7 +37,6 @@
     fetch(url)
       .then((resp) => resp.json())
       .then((data) => {
-        // console.log(data);
         let lbGenre = lbmovie.querySelector('.lb-genre');
         let genres = "";
         data.forEach(({name}) => {
@@ -93,7 +94,6 @@
     fetch(url)
       .then((resp) => resp.json())
       .then((data) => {
-        console.log(data);
         let lbCompany = lbmovie.querySelector('.lb-company');
         let company = "";
         data.forEach(({name}) => {
@@ -155,7 +155,42 @@
     });
   }
 
+  // get all movies for a specific genre id
+  // if id = 0, get all movies
+  function getMoviesByGenre(evt) {
+    let genreId = evt.currentTarget.value;
+    let url;
+
+    if(genreId > 0) {
+      url = `admin/phpscripts/caller.php?caller_id=getRelation&tbl=genre&tbl2=movie&tbl3=movie_genre&col=id&col2=id&id=${genreId}&order=title`;
+    }
+    else {
+      url = 'admin/phpscripts/caller.php?caller_id=getAll&tbl=movie&order=title';
+    }
+
+    fetch(url)
+      .then((resp) => resp.json())
+      .then((data) => {
+        let movieWrapper = document.querySelector('.movies-row > ul');
+        while(movieWrapper.firstChild) {
+          movieWrapper.removeChild(movieWrapper.firstChild);
+        }
+        data.forEach(({id, title, cover}) => {
+          let movieCover = `<img data-id=${id} class="movie-cover" src="images/${cover}" alt="${title} cover">`;
+          movieWrapper.innerHTML += movieCover;
+        });
+        movies = movieWrapper.querySelectorAll('.movie-cover');
+        movies.forEach((movie) => {
+          movie.addEventListener('click', openMovieDetails, false);
+        });
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  }
+
   movies.forEach((movie) => {
     movie.addEventListener('click', openMovieDetails, false);
   });
+  genreSelect.addEventListener('change', getMoviesByGenre, false);
 })();
