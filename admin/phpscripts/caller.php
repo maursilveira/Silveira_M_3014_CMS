@@ -11,6 +11,16 @@
       $id = $_GET['id'];
       deleteUser($id);
     }
+    else if($dir == 'getAll') {
+      $tbl = $_GET['tbl'];
+      $order = $_GET['order'];
+      $result = getAll($tbl, $order);
+      $rows = array();
+      while ($row = mysqli_fetch_assoc($result)) {
+        $rows[] = $row;
+      }
+      echo json_encode($rows);
+    }
     else if($dir == 'getSingle') {
       $tbl = $_GET['tbl'];
       $col = $_GET['col'];
@@ -29,7 +39,13 @@
       $col = $_GET['col'];
       $col2 = $_GET['col2'];
       $id = $_GET['id'];
-      $result = getRelation($tbl, $tbl2, $tbl3, $col, $col2, $id);
+      if($_GET['order']) {
+        $order = $_GET['order'];
+      }
+      else {
+        $order = 'id';
+      }
+      $result = getRelation($tbl, $tbl2, $tbl3, $col, $col2, $id, $order);
       $rows = array();
       while ($row = mysqli_fetch_assoc($result)) {
         $rows[] = $row;
