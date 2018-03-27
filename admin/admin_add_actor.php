@@ -18,7 +18,7 @@
         $result = addLinkRow("movie_actor", "movie_id", "actor_id", $row, $actorId);
       }
     }
-    // redirect_to("admin_index.php");
+    redirect_to("admin_index.php");
   }
  ?>
 

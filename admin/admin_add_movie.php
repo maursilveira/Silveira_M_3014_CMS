@@ -28,7 +28,7 @@
       $result = addLinkRow("movie_company", "movie_id", "company_id", $movieId, $company);
     }
 
-    // redirect_to("admin_index.php");
+    redirect_to("admin_index.php");
   }
  ?>
 

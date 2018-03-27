@@ -7,7 +7,7 @@
 
     $result = addName($tbl, $name);
 
-    // redirect_to("admin_index.php");
+    redirect_to("admin_index.php");
   }
  ?>
 
