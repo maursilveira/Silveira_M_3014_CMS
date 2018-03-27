@@ -76,12 +76,12 @@
 
   $updateQuery = mysqli_query($link, $qstring);
 
-  // if($updateQuery) {
-  //   header("Location:../admin_index.php");
-  // }
-  // else {
-  //   echo "error";
-  // }
+  if($updateQuery) {
+    header("Location:../admin_index.php");
+  }
+  else {
+    echo "error";
+  }
 
   mysqli_close($link);
 
