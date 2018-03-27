@@ -22,7 +22,7 @@ Dynamic content is loaded from database to build the website and present project
 To run the project, it is necessary to import the database content to local application. It is possible to import it using PHPMyAdmin interface or via command line:
 
 ```
-mysql -h localhost -u <user> -p <password> <database name> < db_movies.sql
+mysql -h localhost -u <user> -p <password> <database name> < db_cms.sql
 ```
 
 ## Execution
